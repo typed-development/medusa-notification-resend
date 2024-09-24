@@ -3,7 +3,7 @@ Resend notification sender for medusa 2.x.
 
 ## Setup
 ```bash npm2yarn
-@typed-dev/medusa-notification-resend
+yarn add @typed-dev/medusa-notification-resend
 ```
 ## Configure
 ```js title="medusa-config.js"
