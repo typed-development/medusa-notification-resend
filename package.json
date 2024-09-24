@@ -1,0 +1,39 @@
+{
+  "name": "@typed-dev/medusa-notification-resend",
+  "version": "1.0.1",
+  "description": "Resend email module for medusa 2.x",
+  "main": "dist/index.js",
+  "author": "Typed Dev",
+  "license": "MIT",
+  "repository": "https://github.com/typed-development/medusa-notification-resend",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "jest --passWithNoTests src",
+    "test:integration": "jest --forceExit -- integration-tests/**/__tests__/**/*.spec.ts",
+    "build": "rimraf dist && tsc --build ./tsconfig.json",
+    "watch": "tsc --watch"
+  },
+  "peerDependencies": {
+    "@medusajs/types": "*",
+    "@medusajs/utils": "*"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.5.29",
+    "@swc/jest": "^0.2.36",
+    "cross-env": "^5.2.1",
+    "jest": "^29.7.0",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@medusajs/types": "preview",
+    "@medusajs/utils": "preview",
+    "resend": "^4.0.0"
+  },
+  "packageManager": "yarn@4.3.1"
+}
