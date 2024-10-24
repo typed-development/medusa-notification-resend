@@ -19,6 +19,7 @@ export interface ResendNotificationServiceOptions {
 }
 
 export class ResendNotificationService extends AbstractNotificationProviderService {
+  static identifier = "resend";
   protected config_: ResendServiceConfig;
   protected logger_: Logger;
   protected resend: Resend;
