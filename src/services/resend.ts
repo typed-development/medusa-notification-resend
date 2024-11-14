@@ -19,6 +19,7 @@ export interface ResendNotificationServiceOptions {
 }
 
 export class ResendNotificationService extends AbstractNotificationProviderService {
+  static identifier = "RESEND_NOTIFICATION_SERVICE" //added static identifier required in medusa v2 stable
   protected config_: ResendServiceConfig;
   protected logger_: Logger;
   protected resend: Resend;
