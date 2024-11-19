@@ -1,8 +1,5 @@
+import { AbstractNotificationProviderService, MedusaError, } from "@medusajs/utils";
 import { Logger, NotificationTypes } from "@medusajs/types";
-import {
-  AbstractNotificationProviderService,
-  MedusaError,
-} from "@medusajs/utils";
 import { Resend, CreateEmailOptions } from "resend";
 
 type InjectedDependencies = {
@@ -19,6 +16,7 @@ export interface ResendNotificationServiceOptions {
 }
 
 export class ResendNotificationService extends AbstractNotificationProviderService {
+  static identifier = "RESEND_NOTIFICATION_SERVICE"
   protected config_: ResendServiceConfig;
   protected logger_: Logger;
   protected resend: Resend;
@@ -55,12 +53,12 @@ export class ResendNotificationService extends AbstractNotificationProviderServi
 
     const attachments = Array.isArray(notification.attachments)
       ? notification.attachments.map((attachment) => ({
-          content: attachment.content, // Base64 encoded string of the file
-          filename: attachment.filename,
-          content_type: attachment.content_type, // MIME type (e.g., 'application/pdf')
-          disposition: attachment.disposition ?? "attachment", // Default to 'attachment'
-          id: attachment.id ?? undefined, // Optional: unique identifier for inline attachments
-        }))
+        content: attachment.content, // Base64 encoded string of the file
+        filename: attachment.filename,
+        content_type: attachment.content_type, // MIME type (e.g., 'application/pdf')
+        disposition: attachment.disposition ?? "attachment", // Default to 'attachment'
+        id: attachment.id ?? undefined, // Optional: unique identifier for inline attachments
+      }))
       : undefined;
 
     const from = notification.from?.trim() || this.config_.from;
@@ -84,8 +82,7 @@ export class ResendNotificationService extends AbstractNotificationProviderServi
       const responseError = error.response?.body?.errors?.[0];
       throw new MedusaError(
         MedusaError.Types.UNEXPECTED_STATE,
-        `Failed to send resend email: ${errorCode} - ${
-          responseError?.message ?? "unknown error"
+        `Failed to send resend email: ${errorCode} - ${responseError?.message ?? "unknown error"
         }`
       );
     }
